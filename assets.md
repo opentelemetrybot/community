@@ -366,8 +366,8 @@ This GitHub App addresses two common issues:
    which will bypass this limitation, e.g.
 
    ```
-   - uses: actions/create-github-app-token@v1
-     id: app-token
+   - uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+     id: otelbot-token
      with:
        app-id: ${{ vars.OTELBOT_APP_ID }}
        private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
@@ -375,7 +375,7 @@ This GitHub App addresses two common issues:
    - name: Create pull request
      env:
        # not using secrets.GITHUB_TOKEN since pull requests from that token do not trigger workflows
-       GH_TOKEN: ${{ steps.app-token.outputs.token }}
+       GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
      run: ...
    ```
 
