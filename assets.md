@@ -423,15 +423,27 @@ The OpenTelemetry Bot addresses two common issues:
    will not run on that new pull request without closing and re-opening it manually (this limitation is in place to
    prevent accidental recursive workflow runs).
 
-   The OpenTelemetry GitHub organization has a GitHub Action secret named `OPENTELEMETRYBOT_GITHUB_TOKEN`, which is a
+   The OpenTelemetry GitHub organization had a GitHub Action secret named `OPENTELEMETRYBOT_GITHUB_TOKEN`, which was a
    [Personal Access Token][] for [@opentelemetrybot](https://github.com/opentelemetrybot) with `repo`, `workflow` and `read:org`
-   scope for the OpenTelemetry Bot that you can use to bypass this limitation.
+   scope for the OpenTelemetry Bot that you could use to bypass this limitation.
 
-   The personal access token also has `workflow` scope which is needed when merging upstream changes of
-   `.github/workflow` files into opentelemetrybot's forks (these forks are used for automatically opening PRs against
+   > [!WARNING]
+   > This approach is deprecated. Use the [otelbot](#otelbot) GitHub App instead, which uses `${{ steps.otelbot-token.outputs.token }}`
+   > after setting up the token with:
+   >
+   > ```
+   > - uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+   >   id: otelbot-token
+   >   with:
+   >     app-id: ${{ vars.OTELBOT_APP_ID }}
+   >     private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
+   > ```
+
+   The personal access token also had `workflow` scope which was needed when merging upstream changes of
+   `.github/workflow` files into opentelemetrybot's forks (these forks were used for automatically opening PRs against
    external repos).
 
-   Maintainers can open an issue in the community repository to have their repository granted access to this
+   Maintainers could open an issue in the community repository to have their repository granted access to this
    organization secret.
 
    [Personal Access Token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
