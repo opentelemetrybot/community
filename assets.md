@@ -366,8 +366,8 @@ This GitHub App addresses two common issues:
    which will bypass this limitation, e.g.
 
    ```
-   - uses: actions/create-github-app-token@v1
-     id: app-token
+   - uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+     id: otelbot-token
      with:
        app-id: ${{ vars.OTELBOT_APP_ID }}
        private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
@@ -375,7 +375,7 @@ This GitHub App addresses two common issues:
    - name: Create pull request
      env:
        # not using secrets.GITHUB_TOKEN since pull requests from that token do not trigger workflows
-       GH_TOKEN: ${{ steps.app-token.outputs.token }}
+       GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
      run: ...
    ```
 
@@ -387,11 +387,11 @@ This GitHub App addresses two common issues:
 
 ### OpenTelemetry Bot
 
-> [!NOTE]
-> Consider using the [otelbot](#otelbot) GitHub App instead.
+> [!WARNING]
+> This bot is deprecated. Use the [otelbot](#otelbot) GitHub App instead.
 
-This is a community-owned bot account that you can use when automating common GitHub tasks
-(e.g. release automation tasks).
+This is a community-owned bot account that was previously used for automating common GitHub tasks
+(e.g. release automation tasks). It has been replaced by the `otelbot` GitHub App.
 
 Important: You do not need to (and should not) give this account any permissions to any OpenTelemetry repository.
 
@@ -401,7 +401,7 @@ Link: [@opentelemetrybot](https://github.com/opentelemetrybot)
   (GitHub password and associated 2FA for the `@opentelemetrybot` account are available in the GitHub Owners
   1Password)
 
-The OpenTelemetry Bot addresses two common issues:
+The OpenTelemetry Bot previously addressed two common issues, but these are now better handled by the `otelbot` GitHub App:
 
 1. Since you can't push directly to `main` from workflows (due to branch protections), the next best thing is to
    generate a pull request from the automation and use an account which has signed the CLA as the commit author.
