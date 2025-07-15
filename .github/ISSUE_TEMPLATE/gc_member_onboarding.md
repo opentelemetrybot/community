@@ -148,6 +148,8 @@ for more details).
 The new member must:
 - [ ] Validate they can log in to https://zapier.com with the credentials in 1Password.
 
+<sub>**Tip**: [React](https://github.blog/news-insights/product-news/add-reactions-to-pull-requests-issues-and-comments/) with 👍 to help prioritize this issue. Please use comments to provide useful context, avoiding `+1` or `me too`, to help us triage it. Learn more [here](https://opentelemetry.io/community/end-user/issue-participation/).</sub>
+
 ## Meetings and Ceremonies
 As per GC charter, all members are expected to attend the following meetings:
 
